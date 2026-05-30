@@ -2,6 +2,12 @@
 
 A full-stack e-commerce platform featuring authentication, product management, cart and order workflows, Stripe payments, analytics, and admin tools. Built with a modern JavaScript stack and optimized for performance and scalability.
 
+## Live Demo
+
+[https://joinsociety.onrender.com](https://joinsociety.onrender.com)
+
+> **Stripe test card:** `4242 4242 4242 4242` — any future expiry, any CVC.
+
 ---
 
 ## Tech Stack
@@ -199,7 +205,7 @@ All routes are prefixed with `/api`.
 
 * Node.js 16+
 * MongoDB
-* Redis (optional but recommended)
+* Redis
 
 ### Install & Run
 
@@ -222,8 +228,6 @@ npm run build
 # Serves frontend/build via Express in production mode
 ```
 
-> **Note:** Vite outputs to `dist` by default. The production server expects `frontend/build` — ensure `vite.config.js` sets `build.outDir` to `build` or update the path in `server.js`.
-
 ---
 
 ## Environment Variables
@@ -235,9 +239,10 @@ PORT=5000
 NODE_ENV=development
 
 MONGO_URI=
-JWT_SECRET=
+ACCESS_TOKEN_SECRET=
+REFRESH_TOKEN_SECRET=
 
-REDIS_URL=
+UPSTASH_REDIS_URL=
 
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=

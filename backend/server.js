@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -22,6 +23,10 @@ const __dirname = path.resolve();
 
 app.use(express.json({limit: "10mb"}));
 app.use(cookieParser());
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+}));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
@@ -30,6 +35,10 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/orders", orderRoutes);
+
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" });
+});
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/frontend/build")));
